@@ -5,7 +5,7 @@ import './Navibar.css'
 const Navibar = () => {
     return (
 
-        <Navbar variant="dark" bg="dark" expand="lg">
+        <Navbar className={"fixed-top"} variant="dark" bg="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">
                     <img
@@ -24,11 +24,11 @@ const Navibar = () => {
                         <Nav.Link href="#link">Теория</Nav.Link>
                         <Nav.Link href="#link">О сайте</Nav.Link>
                         <NavDropdown title="Задачи" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.1">Построение циркулем</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Построение линейкой</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Смешанные</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">Все задачи</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
