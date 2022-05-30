@@ -10,9 +10,10 @@ const Navibar = () => {
                 <Navbar.Brand href="#home">
                     <img
                         alt=""
-                        src={require('../../assets/logo-light.png')}
-                        width="30"
-                        height="30"
+                        // src={require('../../assets/logo-light.png')}
+                        src="/logo-light.png"
+                        width={"30"}
+                        height={"30"}
                         className="logo d-inline-block align-top"
                     />{' '}
                     Геометрические построения</Navbar.Brand>

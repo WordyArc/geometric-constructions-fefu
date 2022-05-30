@@ -11,9 +11,10 @@ const Footer = () => {
                     <a href="/"
                        className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                         <img
-                            src={require("../../assets/logo-dark.png")}
-                            width="35"
-                            height="35"
+                            // src={require("../../assets/logo-dark.png")}
+                            src="/logo-dark.png"
+                            width={"35"}
+                            height={"35"}
                             alt=""/>
                     </a>
 
