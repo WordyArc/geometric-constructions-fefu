@@ -1,5 +1,6 @@
 import React from 'react';
-import { Nav, Container } from 'react-bootstrap'
+import { Nav, Container } from 'react-bootstrap';
+import './Footer.css'
 
 const Footer = () => {
     return (
@@ -10,7 +11,7 @@ const Footer = () => {
 
                     <a href="/"
                        className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                        <img
+                        <img className={"Footer-logo"}
                             // src={require("../../assets/logo-dark.png")}
                             src="/logo-dark.png"
                             width={"35"}
