@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Container } from 'react-bootstrap';
+import { Nav, Container, Button } from 'react-bootstrap';
 import './Footer.css'
 
 const Footer = () => {
@@ -20,12 +20,21 @@ const Footer = () => {
                             alt=""/>
                     </a>
 
-                    <Nav className="col-md-4 justify-content-end">
+                    <Nav className="col-md-4 justify-content-center justify-content-lg-end">
                         <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Главная</Nav.Link></Nav.Item>
                         <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Теория</Nav.Link></Nav.Item>
                         <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Задачи</Nav.Link></Nav.Item>
                         <Nav.Item><Nav.Link href="#" className="px-2 text-muted">О сайте</Nav.Link></Nav.Item>
+                        <Button className={"mx-2"} variant={"secondary"}>
+                            <img className={"mb-1"}
+                                 src={require("./assets/Button-up.png")}
+                                 width={"15"}
+                                 height={"15"}
+                                 alt=""/>{' '}
+                            <a href="#" className="text-light text-decoration-none">Наверх</a>
+                        </Button>
                     </Nav>
+
                 </footer>
             </Container>
         </div>
