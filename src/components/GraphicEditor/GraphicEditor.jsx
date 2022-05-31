@@ -20,7 +20,7 @@ const GraphicEditor = () => {
                 />*/}
 
                 <h1 className="text-center pt-3">Редактор</h1>
-                <div className="ggb-container">
+                <div className="ggb-container col-12 col-lg-auto">
                     <div id="ggb-element"></div>
                 </div>
                 <hr/>
