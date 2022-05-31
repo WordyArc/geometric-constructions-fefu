@@ -4,7 +4,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <div>
+        <div className={"mt-auto"}>
             {/*<Container className="fixed-bottom">*/}
             <Container>
                 <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
