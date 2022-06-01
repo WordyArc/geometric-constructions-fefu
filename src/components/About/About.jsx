@@ -29,25 +29,6 @@ const About = () => {
                                 В правильности многих математических утверждений в большинстве случаев школьники убеждаются также в процессе геометрических построений.
                             </p>
 
-                            <div className="header mt-md-5">
-                                <div className="header-body"><h1 className="header-title">Dev Setup</h1></div>
-                            </div>
-                            <p>To get started, you need to do the following:</p>
-                            <ol>
-                                <li><strong>Make sure you have Node installed</strong> since Dashkit React uses npm to
-                                    manage dependencies. If you don't, installing is quite easy, just visit the <a
-                                        href="https://nodejs.org/en/download/">Node Downloads page</a> and install it.
-                                </li>
-                                <li><strong>Unzip your theme and open your command line</strong>, making sure your
-                                    command line prompt is at the root of the unzipped theme directory.
-                                </li>
-                                <li><span className="badge bg-primary-soft"><code>npm install --force</code></span>:
-                                    Open your command line to the root directory of your unzipped theme and run to
-                                    install all of Dashkit's dependencies.
-                                </li>
-                            </ol>
-                            <p>It's that simple! If you're not used to using terminal, don't worry, this is as advanced
-                                as it gets.</p>
 
                             <div className="header mt-md-5">
                                 <div className="header-body"><h1 className="header-title">Используемые технологии при разработке</h1></div>
@@ -83,6 +64,15 @@ const About = () => {
                                 <li><code>Когай В.Я. </code>- разработчик сайта. Студент 4 курса направления 02.03.01 Математика и компьютерные науки.
                                 </li>
                             </ul>
+
+                            <div className="header mt-md-5">
+                                <div className="header-body"><h1 className="header-title">Обратная связь</h1></div>
+                            </div>
+                            <ul>
+                                <li><code>Email: </code> geometric.support@gmail.com
+                                </li>
+                            </ul>
+
 
                         </Col>
                     </Row>
