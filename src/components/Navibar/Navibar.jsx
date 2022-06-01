@@ -21,16 +21,17 @@ const Navibar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Главная</Nav.Link>
+                        <NavLink className="navibar__link" to="/">Главная</NavLink>
                         <NavLink className="navibar__link" to="/Info">Теория</NavLink>
                         <NavLink className="navibar__link" to="/About">О сайте</NavLink>
                         <NavDropdown title="Задачи" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Построение циркулем</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Построение линейкой</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Смешанные</NavDropdown.Item>
+                            <NavLink className="dropdown__link" to="/TasksCompass">Построение циркулем</NavLink>
+                            <NavLink className="dropdown__link" to="/TasksRuler">Построение линейкой</NavLink>
+                            <NavLink className="dropdown__link" to="/TasksMixed">Смешанные</NavLink>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Все задачи</NavDropdown.Item>
+                            <NavLink className="dropdown__link" to="/action/Tasks">Все задачи</NavLink>
                         </NavDropdown>
+
                     </Nav>
                     <Nav>
                         <Button className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>
