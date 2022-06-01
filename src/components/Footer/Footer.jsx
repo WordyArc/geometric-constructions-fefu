@@ -22,17 +22,17 @@ const Footer = () => {
                     </a>
 
                     <Nav className="col-md-4 justify-content-center justify-content-lg-end">
-                        <Nav.Link href="/" className="px-2 text-muted">Главная</Nav.Link>
+                        <NavLink to="/" className="footer__link px-2">Главная</NavLink>
                         <NavLink to="/Info" className="footer__link px-2">Теория</NavLink>
                         <NavLink to="/Tasks" className="footer__link px-2">Задачи</NavLink>
                         <NavLink to="/About" className="footer__link px-2">О сайте</NavLink>
                         <Button className={"mx-2"} variant={"secondary"}>
-                            <img className={"mb-1"}
-                                 src={require("./assets/Button-up.png")}
-                                 width={"15"}
-                                 height={"15"}
-                                 alt=""/>{' '}
-                            <a href="#" className="text-light text-decoration-none">Наверх</a>
+                            <a href="#" className="text-light text-decoration-none">
+                                <img className={"mb-1"}
+                                     src={require("./assets/Button-up.png")}
+                                     width={"15"}
+                                     height={"15"}
+                                     alt=""/>{' '}Наверх</a>
                         </Button>
                     </Nav>
 
