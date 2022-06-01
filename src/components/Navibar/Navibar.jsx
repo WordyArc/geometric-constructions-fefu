@@ -1,13 +1,14 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container, NavDropdown } from "react-bootstrap";
 import './Navibar.css'
+import { NavLink } from "react-router-dom";
 
 const Navibar = () => {
     return (
 
         <Navbar className={"fixed-top"} variant="dark" bg="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         alt=""
                         // src={require('../../assets/logo-light.png')}
@@ -21,8 +22,8 @@ const Navibar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Главная</Nav.Link>
-                        <Nav.Link href="/Info">Теория</Nav.Link>
-                        <Nav.Link href="/About">О сайте</Nav.Link>
+                        <NavLink className="navibar__link" to="/Info">Теория</NavLink>
+                        <NavLink className="navibar__link" to="/About">О сайте</NavLink>
                         <NavDropdown title="Задачи" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Построение циркулем</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Построение линейкой</NavDropdown.Item>

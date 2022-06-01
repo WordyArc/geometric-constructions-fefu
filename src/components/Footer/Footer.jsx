@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav, Container, Button } from 'react-bootstrap';
 import './Footer.css'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -21,10 +22,10 @@ const Footer = () => {
                     </a>
 
                     <Nav className="col-md-4 justify-content-center justify-content-lg-end">
-                        <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Главная</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Теория</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href="#" className="px-2 text-muted">Задачи</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href="#" className="px-2 text-muted">О сайте</Nav.Link></Nav.Item>
+                        <Nav.Link href="/" className="px-2 text-muted">Главная</Nav.Link>
+                        <NavLink to="/Info" className="footer__link px-2">Теория</NavLink>
+                        <NavLink to="/Tasks" className="footer__link px-2">Задачи</NavLink>
+                        <NavLink to="/About" className="footer__link px-2">О сайте</NavLink>
                         <Button className={"mx-2"} variant={"secondary"}>
                             <img className={"mb-1"}
                                  src={require("./assets/Button-up.png")}
