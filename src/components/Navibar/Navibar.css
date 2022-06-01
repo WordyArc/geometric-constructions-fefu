@@ -6,3 +6,15 @@
 .logo {
     border-radius: 10px;
 }
+
+.navibar__link {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    text-decoration: none;
+    color: rgba(255,255,255,.55);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.navibar__link.active  {
+    color: gold;
+}

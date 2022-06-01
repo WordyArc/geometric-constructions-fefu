@@ -1,3 +1,16 @@
+.footer__link {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    --bs-text-opacity: 1;
+    color: #6c757d;
+}
+
+
+.footer__link.active {
+    color: gold;
+}
 
 @media (prefers-reduced-motion: no-preference) {
     .Footer-logo {
