@@ -20,9 +20,9 @@ const Navibar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Главная</Nav.Link>
-                        <Nav.Link href="#link">Теория</Nav.Link>
-                        <Nav.Link href="#link">О сайте</Nav.Link>
+                        <Nav.Link href="/">Главная</Nav.Link>
+                        <Nav.Link href="/Info">Теория</Nav.Link>
+                        <Nav.Link href="/About">О сайте</Nav.Link>
                         <NavDropdown title="Задачи" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Построение циркулем</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Построение линейкой</NavDropdown.Item>
