@@ -31,7 +31,7 @@ const Footer = () => {
                     <Nav className="col-md-4 justify-content-center justify-content-lg-end">
                         <NavLink to="/" className="footer__link px-2">Главная</NavLink>
                         <NavLink to="/Info" className="footer__link px-2">Теория</NavLink>
-                        <NavLink to="/Tasks" className="footer__link px-2">Задачи</NavLink>
+                        <NavLink to="/TasksPage" className="footer__link px-2">Задачи</NavLink>
                         <NavLink to="/About" className="footer__link px-2">О сайте</NavLink>
                         <OverlayTrigger
                             placement="right"

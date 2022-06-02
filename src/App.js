@@ -1,13 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Routes, Route} from "react-router";
+import { Routes, Route } from "react-router-dom";
+
 
 import Navibar from "./components/Navibar/Navibar";
 import Footer from "./components/Footer/Footer";
 import GraphicEditor from "./components/GraphicEditor/GraphicEditor";
 import About from "./components/About/About";
 import Info from "./components/Info/Info";
-
+import TasksPage from "./components/Tasks/TasksPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path='/' element={<GraphicEditor/>}/>
                     <Route path='/About' element={<About/>}/>
                     <Route path='/Info' element={<Info/>}/>
+                    <Route path='/TasksPage' element={<TasksPage/>}/>
                 </Routes>
 
                 <Footer/>

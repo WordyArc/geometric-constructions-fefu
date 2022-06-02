@@ -29,7 +29,7 @@ const Navibar = () => {
                             <NavLink className="dropdown__link" to="/TasksRuler">Построение линейкой</NavLink>
                             <NavLink className="dropdown__link" to="/TasksMixed">Смешанные</NavLink>
                             <NavDropdown.Divider />
-                            <NavLink className="dropdown__link" to="/Tasks">Все задачи</NavLink>
+                            <NavLink className="dropdown__link" to="/TasksPage">Все задачи</NavLink>
                         </NavDropdown>
 
                     </Nav>
