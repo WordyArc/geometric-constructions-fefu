@@ -12,12 +12,21 @@ const Info = () => {
                      alt=""
                      width={"200"}
                      height={"200"}/>
-                    <h1 className="display-5 fw-bold">Centered hero</h1>
+                    <h1 className="display-5 fw-bold">Геометрические построения ограниченными средствами</h1>
                     <Col className="col-lg-6 mx-auto">
-                        <p className="lead mb-4">Quickly design and customize responsive mobile-first sites with
-                            Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables
-                            and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript
-                            plugins.</p>
+                        <h4>Общие аксиомы</h4>
+                        <p className="lead mb-4 text-start">
+                            I.	Каждая данная фигура построена. <br/>
+                            II.	Если построены две (или более) фигуры, то построено и соединение этих фигур. <br/>
+                            III.	Если построены две фигуры, то можно установить, является ли их разность пустым множеством или нет.<br/>
+                            IV.	Если разность двух построенных фигур не является пустым множеством, то эта разность построена.<br/>
+                            V.	Если две фигуры построены, то можно установить, является ли их пересечение пустым множеством или нет.<br/>
+                            VI.	Если пересечение двух построенных фигур не пусто, то оно построено.<br/>
+                            VII.	Можно построить любое конечное число общих точек двух построенных фигур, если такие точки существуют.<br/>
+                            VIII.	Можно построить точку, заведомо принадлежащую построенной фигуре.<br/>
+                            IX.	Можно построить точку, заведомо не принадлежащую построенной фигуре.<br/>
+
+                        </p>
                     </Col>
             </div>
             <div className="divider"></div>
@@ -32,10 +41,12 @@ const Info = () => {
                              loading="lazy"/>
                     </Col>
                     <Col className="col-lg-6">
-                        <h1 className="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                        <p className="lead">Quickly design and customize responsive mobile-first sites with Bootstrap,
-                            the world’s most popular front-end open source toolkit, featuring Sass variables and mixins,
-                            responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                        <h1 className="display-5 fw-bold lh-1 mb-3">Построения одиним циркулем</h1>
+                        <h4>Можно постросить:</h4>
+                        <p className="lead text-start">
+                            1. Окружность, если построены центр окружности и отрезок, равный радиусу окружности (или его концы). <br/>
+                            2. Построить любую из двух дополнительных дуг окружности и концы этих дуг.
+                        </p>
                     </Col>
                 </Row>
             </Container>
@@ -51,10 +62,13 @@ const Info = () => {
                              loading="lazy"/>
                     </Col>
                     <Col className="col-lg-6">
-                        <h1 className="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                        <p className="lead">Quickly design and customize responsive mobile-first sites with Bootstrap,
-                            the world’s most popular front-end open source toolkit, featuring Sass variables and mixins,
-                            responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                        <h1 className="display-5 fw-bold lh-1 mb-3">Построения одной линейкой</h1>
+                        <h4>Можно постросить:</h4>
+                        <p className="lead text-start">
+                            1. Построить отрезок, соединяющий две построенные точки. <br/>
+                            2. Построить прямую, проходящую через две построенные точки. <br/>
+                            3. Построить луч, исходящий из построенной точки и проходящий через другую построенную точку. <br/>
+                        </p>
                     </Col>
                 </Row>
             </Container>
