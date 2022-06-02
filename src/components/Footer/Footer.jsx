@@ -1,14 +1,21 @@
 import React from 'react';
-import { Nav, Container, Button } from 'react-bootstrap';
+import { Nav, Container, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import './Footer.css'
 import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
+
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Вернуться в начало страницы
+        </Tooltip>
+    );
+
     return (
         <div className={"mt-auto"}>
             {/*<Container className="fixed-bottom">*/}
             <Container>
-                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 mb-4 border-top">
                     <p className="col-md-4 mb-0 text-muted">© 2022 Kogai Viktor</p>
 
                     <a href="/"
@@ -26,14 +33,21 @@ const Footer = () => {
                         <NavLink to="/Info" className="footer__link px-2">Теория</NavLink>
                         <NavLink to="/Tasks" className="footer__link px-2">Задачи</NavLink>
                         <NavLink to="/About" className="footer__link px-2">О сайте</NavLink>
-                        <Button className={"mx-2"} variant={"secondary"}>
-                            <a href="#" className="text-light text-decoration-none">
-                                <img className={"mb-1"}
-                                     src={require("./assets/Button-up.png")}
-                                     width={"15"}
-                                     height={"15"}
-                                     alt=""/>{' '}Наверх</a>
-                        </Button>
+                        <OverlayTrigger
+                            placement="right"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip}
+                        >
+                            <Button className={"mx-2"} variant={"secondary"}>
+                                <a href="#" className="text-light text-decoration-none">
+                                    <img className={"mb-1"}
+                                         src={require("./assets/Button-up.png")}
+                                         width={"15"}
+                                         height={"15"}
+                                         alt=""/>{' '}Наверх</a>
+                            </Button>
+                        </OverlayTrigger>
+
                     </Nav>
 
                 </footer>

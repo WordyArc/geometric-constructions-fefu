@@ -29,13 +29,13 @@ const Navibar = () => {
                             <NavLink className="dropdown__link" to="/TasksRuler">Построение линейкой</NavLink>
                             <NavLink className="dropdown__link" to="/TasksMixed">Смешанные</NavLink>
                             <NavDropdown.Divider />
-                            <NavLink className="dropdown__link" to="/action/Tasks">Все задачи</NavLink>
+                            <NavLink className="dropdown__link" to="/Tasks">Все задачи</NavLink>
                         </NavDropdown>
 
                     </Nav>
                     <Nav>
-                        <Button className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>
-                        <Button variant="primary">Зарегистрироваться</Button>
+                        <Button disabled className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>
+                        <Button disabled variant="primary">Зарегистрироваться</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
