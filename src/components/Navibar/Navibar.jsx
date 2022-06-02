@@ -23,14 +23,14 @@ const Navibar = () => {
                     <Nav className="me-auto">
                         <NavLink className="navibar__link" to="/">Главная</NavLink>
                         <NavLink className="navibar__link" to="/Info">Теория</NavLink>
-                        <NavLink className="navibar__link" to="/About">О сайте</NavLink>
                         <NavDropdown title="Задачи" id="basic-nav-dropdown">
-                            <NavLink className="dropdown__link" to="/TasksCompass">Построение циркулем</NavLink>
-                            <NavLink className="dropdown__link" to="/TasksRuler">Построение линейкой</NavLink>
-                            <NavLink className="dropdown__link" to="/TasksMixed">Смешанные</NavLink>
+                            {/*<NavLink className="dropdown__link" to="/TasksCompass">Построение циркулем</NavLink>*/}
+                            {/*<NavLink className="dropdown__link" to="/TasksRuler">Построение линейкой</NavLink>*/}
+                            {/*<NavLink className="dropdown__link" to="/TasksMixed">Смешанные</NavLink>*/}
                             <NavDropdown.Divider />
                             <NavLink className="dropdown__link" to="/TasksPage">Все задачи</NavLink>
                         </NavDropdown>
+                        <NavLink className="navibar__link" to="/About">О сайте</NavLink>
 
                     </Nav>
                     <Nav>

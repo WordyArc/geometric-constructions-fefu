@@ -10,7 +10,7 @@ const About = () => {
                     <Row className="justify-content-center">
                         <Col className="col-xl-8 col-lg-10 col-12">
 
-                            <div className="header mt-md-5">
+                            <div className="header mt-5 mt-md-5">
                                 <div className="header-body"><h6 className="header-pretitle">О сайте</h6><h1
                                     className="header-title display-4">Геометрические построения</h1></div>
                             </div>
