@@ -1,0 +1,9 @@
+.task-card__card {
+    width: 100%;
+    max-width: 25rem;
+}
+
+.task-card__img {
+    height: 100%;
+    max-height: 225px;
+}
