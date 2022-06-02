@@ -11,7 +11,7 @@ const TasksPage = () => {
 
                 <Container className="py-5 text-center border-bottom">
                     <div className="row py-lg-5">
-                        <div className="col-lg-6 col-md-8 mx-auto">
+                        <div className="col-lg-6 col-md-8 mx-auto mt-5">
                             <h1 className="fw-bolder">Задачи</h1>
                             <p className="lead text-muted">На данной страницы вы можете посмотреть все доступные задачи на геометрические построения ограниченными средствами.</p>
                         </div>
