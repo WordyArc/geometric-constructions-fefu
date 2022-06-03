@@ -9,6 +9,9 @@ import GraphicEditor from "./components/GraphicEditor/GraphicEditor";
 import About from "./components/About/About";
 import Info from "./components/Info/Info";
 import TasksPage from "./components/Tasks/TasksPage";
+import Task from "./components/Tasks/Task/Task";
+import GebraExample from "./scripts/GebraExample";
+
 
 function App() {
     return (
@@ -21,6 +24,8 @@ function App() {
                     <Route path='/About' element={<About/>}/>
                     <Route path='/Info' element={<Info/>}/>
                     <Route path='/TasksPage' element={<TasksPage/>}/>
+                    <Route path='/Task' element={<Task/>}/>
+                    <Route path='/GebraExample' element={<GebraExample/>}/>
                 </Routes>
 
                 <Footer/>
