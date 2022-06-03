@@ -24,6 +24,50 @@ const Task = () => {
         }
     }
 
+    var scenes = new Map();
+    var sceneNumber = 1;
+
+    function addScene(number, names) {
+        scenes.set(number, names);
+    }
+
+    function hideScene(number) {
+        const app = window.appId;
+        let namesArray = scenes.get(number);
+        for (let i = 0; i < namesArray.length; ++i) {
+            app.setVisible(namesArray[i], false);
+        }
+    }
+
+    function showScene(number) {
+        const app = window.appId;
+        let namesArray = scenes.get(number);
+        for (let i = 0; i < namesArray.length; ++i) {
+            app.setVisible(namesArray[i], true);
+        }
+    }
+
+    function prevScene() {
+        let prevSceneNumber = sceneNumber - 1;
+        if (prevSceneNumber > 0) {
+            hideScene(sceneNumber);
+            --sceneNumber;
+            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        }
+        else return;
+    }
+
+    function nextScene() {
+        let nextScene = sceneNumber + 1;
+        if (nextScene < scenes.size + 1) {
+            showScene(nextScene);
+            ++sceneNumber;
+            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        }
+        else return;
+    }
+
+
     return (
         <div className="m-auto">
             <div className="container-fluid bg-light align-content-center" id="main-container">
@@ -44,9 +88,9 @@ const Task = () => {
                             <div id="ggb-element"></div>
                         </div>*/}
                         <div className="btn-group d-flex justify-content-center w-50 under-buttons">
-                            <button className="btn btn-dark" onClick="prevScene()">Предыдущий рисунок</button>
+                            <button className="btn btn-dark" onClick={prevScene}>Предыдущий рисунок</button>
                             <button className="btn btn-dark" id="current-scene">Рисунок 1</button>
-                            <button className="btn btn-dark" onClick="nextScene()" id="nextSceneButton">Следующий
+                            <button className="btn btn-dark" onClick={nextScene} id="nextSceneButton">Следующий
                                 рисунок
                             </button>
                         </div>
