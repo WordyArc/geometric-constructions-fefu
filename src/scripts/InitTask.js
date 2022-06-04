@@ -293,19 +293,99 @@ const InitTask = () => {
         hideScene(7);
     }
 
+    function saveGgbFile(){
+        const app = window.appId;
+        app.getBase64(function(b){document.getElementById("Base64").value = b});
+    }
+    function loadGgbFile(){
+        const app = window.appId;
+        app.setBase64(document.getElementById("Base64").value);
+    }
 
+    function getObjname() {
+        const app = window.appId;
+        let i, strName, strType, strCommand;
+        let objNumber = app.getObjectNumber();
+        var strState = "Number of objects: " + objNumber;
+        for (i=0; i < objNumber; i++) {
+            strName = app.getObjectName(i);
+            strType = app.getObjectType(strName);
+            strCommand = app.getCommandString(strName);
+            strState += "\n" + strType + " " + strName + ", " + strCommand;
+            console.log(strName, i, strType)
+        }
+        console.log(app.getObjectName(0))
+    }
+
+    function setVisible() {
+        const app = window.appId;
+        let i, strName;
+        let objNumber = app.getObjectNumber();
+        for (i=0; i < objNumber; i++) {
+            strName = app.getObjectName(i);
+            app.setVisible(strName, true)
+        }
+
+    }
+    function setHidden() {
+        const app = window.appId;
+        let i, strName;
+        let objNumber = app.getObjectNumber();
+        for (i=0; i < objNumber; i++) {
+            strName = app.getObjectName(i);
+            app.setVisible(strName, false)
+        }
+    }
+
+    var scenes2 = new Map();
+    var arr = [];
+
+    function addScene2(number, names) {
+        scenes2.set(number, names);
+    }
+    var startScene = 0;
+    var key = 1;
+    function setScene() {
+        const app = window.appId;
+        let i, strName;
+
+        let objNumber = app.getObjectNumber();
+        for (i = startScene; i < objNumber; i++) {
+            strName = app.getObjectName(i);
+            // addScene2(sceneNumber, [strName])
+            arr[i] = strName;
+            startScene = objNumber;
+            console.log(objNumber);
+            if (i === objNumber-1) {
+                scenes.set(key, arr);
+                key++;
+            }
+        }
+        console.log(arr);
+        arr = [];
+
+        // addScene2(key, arr);
+    }
+    function shitScene() {
+        // console.log(arr);
+        console.log(scenes);
+
+        // console.log(scenes);
+        // console.log(key);
+    }
 
     return (
         <div>
             <Geogebra
                 debug
                 id="appId"
-
+                language="english"
                 appName="3d"
                 width="600"
                 height="400"
                 enableUndoRedo="false"
                 useBrowserForJS="true"
+
             />
             <div className="btn-group d-flex justify-content-center w-50 under-buttons">
                 <button className="btn btn-dark" onClick={prevScene}>Предыдущий рисунок</button>
@@ -318,7 +398,18 @@ const InitTask = () => {
                 <button className="btn btn-dark" id="edit-mode" onClick={ChangeMode}>Режим презентации
                 </button>
                 <button onClick={ggbOnInit}>Построить говно</button>
+                <button onClick={getObjname}>получить имя</button>
+                <button onClick={setVisible}>показать</button>
+                <button onClick={setHidden}>скрыть</button>
+                <button onClick={setScene}>сохранить сцену</button>
+                <button onClick={shitScene}>показать сцены</button>
+
             </div>
+            <ul>
+                <li/><button onClick={saveGgbFile}>Save</button>
+                    <li/><button onClick={loadGgbFile}>Load</button>
+            </ul>
+            <textarea name="Base64" id="Base64" cols="66" rows="8"></textarea>
         </div>
     );
 };
