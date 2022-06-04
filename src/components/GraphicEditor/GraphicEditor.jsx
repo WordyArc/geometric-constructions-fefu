@@ -1,9 +1,9 @@
 import React from 'react';
 import {Container} from "react-bootstrap";
 // import Geogebra from "react-geogebra";
-import '../../scripts/initGGBApp'
+import '../../scripts/InitGGBApp'
 import './GraphicEditor.css'
-import Geogebra from "../../scripts/initGGBApp";
+import Geogebra from "../../scripts/InitGGBApp";
 
 
 const GraphicEditor = () => {
