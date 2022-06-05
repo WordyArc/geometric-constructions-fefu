@@ -37,3 +37,25 @@
 color: gold;
 }
 
+.dropdown__link_disabled {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    pointer-events: none;
+    cursor: default;
+    color: red;
+}
+
+@media screen and (max-width: 393px){
+    .navibar__brand {
+        font-size: large;
+    }
+}
+
