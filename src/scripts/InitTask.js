@@ -367,9 +367,11 @@ const InitTask = () => {
         // addScene2(key, arr);
     }
     function shitScene() {
+        const app = window.appId;
         // console.log(arr);
         console.log(scenes);
-
+        // console.log(app.getBase64())
+        console.log(JSON.stringify(Array.from(scenes.entries())));
         // console.log(scenes);
         // console.log(key);
     }

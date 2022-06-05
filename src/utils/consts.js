@@ -1,0 +1,7 @@
+export const LOGIN_ROUTE = '/login'
+export const CHAT_ROUTE = '/chat'
+export const HOME_ROUTE = '/'
+export const INFO_ROUTE = '/Info'
+export const ABOUT_ROUTE = '/About'
+export const TASKSPAGE_ROUTE = '/TasksPage'
+export const TASK_ROUTE = '/Task'
