@@ -3,10 +3,17 @@ import {Card, Col, Button} from "react-bootstrap";
 import './TaskCard.css'
 
 
-const TaskCard = () => {
+const TaskCard = (props) => {
+
+
+    // const rendrCard = (card, index) => {
+    //     return(
+    //
+    //     )
+    // }
+
     return (
-        <Col>
-            <Card className="shadow-sm">
+            <Card className="task-card shadow-sm col-12 col-sm-7 col-md-5 col-lg-3 mx-3 my-5">
                 <svg className="bd-placeholder-img card-img-top" width="100%" height="225"
                      xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                      preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
@@ -15,19 +22,20 @@ const TaskCard = () => {
                 </svg>
 
                 <Card.Body>
-                    <Card.Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos distinctio facilis harum in ipsa labore, modi optio pariatur ratione.
-                        Ab cumque dolore eius et facilis laudantium necessitatibus officiis perspiciatis quas!
-                    </Card.Text>
-                    <div className="d-flex justify-content-between align-items-center">
+                    <Card.Title> {props.title} </Card.Title>
+                    <Card.Text> {props.description} </Card.Text>
+                    <Card.Subtitle> {props.type} </Card.Subtitle>
+                    <div className="d-flex justify-content-between align-items-center mt-3">
                         <div className="btn-group">
-                            <Button href="/Task" variant="outline-secondary" className="btn-sm">Посмотреть</Button>
-                            <Button disabled variant="outline-secondary"  className="btn-sm">Редактировать</Button>
+                            <Button href="/Task" variant="outline-secondary"
+                                    className="btn-sm">Посмотреть</Button>
+                            <Button disabled variant="outline-secondary"
+                                    className="btn-sm">Редактировать</Button>
                         </div>
                         <small className="text-muted">9 mins</small>
                     </div>
                 </Card.Body>
             </Card>
-        </Col>
     );
 };
 

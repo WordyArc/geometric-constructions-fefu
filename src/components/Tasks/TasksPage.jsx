@@ -1,10 +1,33 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import './TasksPage.css';
 import TaskCard from "./TaskCard/TaskCard";
+import {useEffect, useState} from "react";
+import {collection, getDocs, Timestamp} from "firebase/firestore";
+import {db} from "../../firebase-config";
 
 
 const TasksPage = () => {
+    const tasksCollectionRef = collection(db, 'tasks')
+
+    const [tasksList, setTasksList] = useState([])
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [solution, setSolution] = useState("")
+    const [base64, setBase64] = useState("")
+    const [scenes, setScenes] = useState("")
+    const [type, setType] = useState("")
+    const [date , setDate] = useState('')
+
+    useEffect(() => {
+        const getTasks = async () => {
+            const data = await getDocs(tasksCollectionRef);
+            setTasksList(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        }
+
+        getTasks();
+    }, [])
+
     return (
         <div>
             <div className="tasks__wrapper bg-img bg-light shadow">
@@ -22,23 +45,22 @@ const TasksPage = () => {
 
 
 
-            <div className="album py-5">
-                <div className="container">
-                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <Container className="d-flex flex-wrap justify-content-center">
 
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
-                        <TaskCard/>
+                                {/*<Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">*/}
+                            {
+                                tasksList.map((task) => {
+                                    return (
+                                    <TaskCard
+                                        title={ task.title }
+                                        description={ task.description }
+                                        type={ task.type }
+                                    />
+                                    )
+                                })
+                            }
+                        </Container>
 
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
