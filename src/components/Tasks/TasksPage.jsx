@@ -3,14 +3,14 @@ import {Container, Row} from "react-bootstrap";
 import './TasksPage.css';
 import TaskCard from "./TaskCard/TaskCard";
 import {useEffect, useState} from "react";
-import {collection, getDocs, Timestamp} from "firebase/firestore";
+import {collection, getDocs, onSnapshot, Timestamp} from "firebase/firestore";
 import {db} from "../../firebase-config";
 
 
 const TasksPage = () => {
     const tasksCollectionRef = collection(db, 'tasks')
 
-    const [tasksList, setTasksList] = useState([])
+    const [tasksList, setTasksList] = useState([{name: "Загрузка...."}])
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [solution, setSolution] = useState("")
@@ -27,6 +27,14 @@ const TasksPage = () => {
 
         getTasks();
     }, [])
+
+    /*useEffect(
+        () =>
+            onSnapshot(collection(db, 'tasks'), (snapshot) =>
+            setTasksList(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+            ),
+        []
+    );*/
 
     return (
         <div>
@@ -46,7 +54,6 @@ const TasksPage = () => {
 
 
                         <Container className="d-flex flex-wrap justify-content-center">
-
                                 {/*<Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">*/}
                             {
                                 tasksList.map((task) => {

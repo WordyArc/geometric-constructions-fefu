@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Geogebra from "./InitGGBApp";
+import {Context} from "../index";
 
 
 const InitTask = () => {
+
 
     function ChangeMode() {
         const app = window.appId;
@@ -296,6 +298,7 @@ const InitTask = () => {
     function saveGgbFile(){
         const app = window.appId;
         app.getBase64(function(b){document.getElementById("Base64").value = b});
+        console.log(app.getXML());
     }
     function loadGgbFile(){
         const app = window.appId;
@@ -366,18 +369,36 @@ const InitTask = () => {
 
         // addScene2(key, arr);
     }
+
+    var svg;
     function shitScene() {
         const app = window.appId;
         // console.log(arr);
         console.log(scenes);
         // console.log(app.getBase64())
         console.log(JSON.stringify(Array.from(scenes.entries())));
+        // let url = 'screen'
+        // app.getScreenshotBase64(function(url){window.open("data:image/png;base64,"+url);});
+        //
+        // let svgOutput;
+        // app.exportSVG(svg => svgOutput = svg);
+        //
+        // var serializer = new XMLSerializer();
+        // var xmlString = serializer.serializeToString(svgOutput);
+        // console.log(xmlString);
+
+
+
         // console.log(scenes);
         // console.log(key);
     }
 
+
+
+
     return (
         <div>
+
             <Geogebra
                 debug
                 id="appId"
