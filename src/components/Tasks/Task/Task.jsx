@@ -13,7 +13,7 @@ import TaskCard from "../TaskCard/TaskCard";
 
 const Task = () => {
 
-    let id = 'JQeY7wFTF3dvSzo0yvsl'
+    let id = 'zR1eUsCcnv13PvpICK9l'
     const colRef = collection(db, 'tasks')
     const docRef = doc(db, 'tasks', id)
     /*getDoc(docRef)
@@ -63,7 +63,7 @@ const Task = () => {
         getTask()
     }, [])
 
-console.log(taskList.type)
+// console.log(taskList.type)
 
 
     /*db.collection('tasks')
