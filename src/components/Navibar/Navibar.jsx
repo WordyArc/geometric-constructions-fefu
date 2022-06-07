@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Container, NavDropdown } from "react-bootstrap";
 import './Navibar.css'
 import { NavLink } from "react-router-dom";
 import {
-    ABOUT_ROUTE,
+    ABOUT_ROUTE, CREATETASK_ROUTE,
     HOME_ROUTE,
     INFO_ROUTE,
     TASKSCOMPASS_ROUTE,
@@ -38,6 +38,7 @@ const Navibar = () => {
                                 <NavLink className="dropdown__link" to={TASKSPAGE_ROUTE}>Все задачи</NavLink>
                             </NavDropdown>
                             <NavLink className="navibar__link" to={ABOUT_ROUTE}>О сайте</NavLink>
+                            <NavLink className="navibar__link" to={CREATETASK_ROUTE}>Создать задачу</NavLink>
                         </Nav>
                         <Nav>
                             <Button disabled className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>

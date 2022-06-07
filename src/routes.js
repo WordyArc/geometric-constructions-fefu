@@ -1,6 +1,7 @@
 import {
     ABOUT_ROUTE,
     CHAT_ROUTE,
+    CREATETASK_ROUTE,
     HOME_ROUTE,
     INFO_ROUTE,
     LOGIN_ROUTE,
@@ -12,6 +13,7 @@ import Task from "./components/Tasks/Task/Task";
 import TasksPage from "./components/Tasks/TasksPage";
 import Info from "./components/Info/Info";
 import About from "./components/About/About";
+import CreateTask from "./components/CreateTask/CreateTask";
 
 export const privateRoutes = [
     {
@@ -40,6 +42,10 @@ export const publicRoutes = [
     {
         path: TASK_ROUTE,
         Component: <Task/>
+    },
+    {
+        path: CREATETASK_ROUTE,
+        Component: <CreateTask/>
     }
 ]
 
