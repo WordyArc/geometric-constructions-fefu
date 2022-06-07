@@ -2,3 +2,7 @@
     min-width: 35rem;
     height: 40vh;
 }
+
+.task__wrapper {
+    margin-top: 10vh;
+}

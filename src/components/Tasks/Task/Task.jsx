@@ -1,14 +1,11 @@
-import React, {useEffect} from 'react';
-import {Container} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
 import './Task.css'
 
 import Geogebra from "../../../scripts/InitGGBApp";
-import {useState} from "react";
-import InitTask from "../../../scripts/InitTask";
-import {collection, doc, getDoc, getDocs, onSnapshot, orderBy, query} from "firebase/firestore";
+// import InitTask from "../../../scripts/InitTask";
+import {collection, doc, getDoc} from "firebase/firestore";
 import {db} from "../../../firebase-config";
-import TaskCard from "../TaskCard/TaskCard";
-
+import {Button} from "react-bootstrap";
 
 
 const Task = () => {
@@ -16,6 +13,140 @@ const Task = () => {
     let id = 'zR1eUsCcnv13PvpICK9l'
     const colRef = collection(db, 'tasks')
     const docRef = doc(db, 'tasks', id)
+    const [taskList, setTaskList] = useState([])
+    useEffect(() => {
+        const getTask = async () => {
+            getDoc(docRef)
+                .then((doc) => {
+                    setTaskList(doc.data())
+                })
+        }
+        getTask()
+    }, [])
+
+    useEffect(() => {
+        const setData = async () => {
+            const app = await window.appId
+            await app.setBase64(taskList.base64);
+            let strScenes = await taskList.scenes
+            scenes = JSON.parse(strScenes, reviver)
+            setTimeout(setPresentMode, 10);
+            // await setPresentMode();
+        }
+        setTimeout(setData, 50)
+    },);
+
+
+    function setPresentMode() {
+        const app = window.appId;
+        app.setPerspective("T");
+        app.enableRightClick(false);
+        app.setAxesVisible(3, false, false, false);
+    }
+    function setChangeMode() {
+        const app = window.appId;
+        app.setPerspective("5");
+        app.enableRightClick(true);
+    }
+
+    function ChangeMode() {
+        const app = window.appId;
+        if (document.getElementById('edit-mode').innerText === "Режим презентации") {
+            document.getElementById("edit-mode").innerText = "Режим редактирования";
+            setChangeMode()
+        } else {
+            document.getElementById("edit-mode").innerText = "Режим презентации";
+            setPresentMode()
+        }
+    }
+
+    let scenes = new Map();
+    let sceneNumber = 1;
+
+    function addScene(number, names) {
+        scenes.set(number, names);
+    }
+
+    function hideScene(number) {
+        const app = window.appId;
+        let namesArray = scenes.get(number);
+        for (let i = 0; i < namesArray.length; ++i) {
+            app.setVisible(namesArray[i], false);
+        }
+    }
+
+    function showScene(number) {
+        const app = window.appId;
+        let namesArray = scenes.get(number);
+        for (let i = 0; i < namesArray.length; ++i) {
+            app.setVisible(namesArray[i], true);
+        }
+    }
+
+    function prevScene() {
+        const app = window.appId;
+        let prevSceneNumber = sceneNumber - 1;
+        if (prevSceneNumber > 0) {
+            hideScene(sceneNumber);
+            --sceneNumber;
+            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        }
+        else return;
+    }
+
+    function nextScene() {
+        const app = window.appId;
+        let nextScene = sceneNumber + 1;
+        if (nextScene < scenes.size + 1) {
+            showScene(nextScene);
+            ++sceneNumber;
+            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        }
+        else return;
+    }
+
+    function reviver(key, value) {
+        if(typeof value === 'object' && value !== null) {
+            if (value.dataType === 'Map') {
+                return new Map(value.value);
+            }
+        }
+        return value;
+    }
+
+    /*function loadGgbFile(){
+        const app = window.appId;
+        app.setBase64(taskList.base64);
+        setTimeout(setPresentMode,1)
+    }
+    setTimeout(loadGgbFile, 100)*/
+
+    /*(async () => {
+        const app = await window.appId
+        await app.setBase64(taskList.base64);
+        let strScenes = taskList.scenes
+        scenes = JSON.parse(strScenes, reviver)
+        setTimeout(setPresentMode, 1);
+    })();*/
+
+
+
+    /*function setStrScenes() {
+        let strScenes = taskList.scenes
+        const newStrScene = JSON.parse(strScenes, reviver);
+        scenes = newStrScene
+    }
+    setTimeout(setStrScenes, 100)*/
+
+    /*(async () => {
+        const app = await window.appId
+        await app.setBase64(taskList.base64);
+        let strScenes = await taskList.scenes
+        scenes = JSON.parse(strScenes, reviver)
+        setTimeout(setPresentMode, 10);
+    })();*/
+
+
     /*getDoc(docRef)
         .then((doc) => {
             // console.log(doc.data(), doc.id)
@@ -34,7 +165,7 @@ const Task = () => {
         // console.log(doc.data(), doc.id)
     })*/
 
-    const [taskList, setTaskList] = useState([])
+
     /*useEffect(
         () =>
             onSnapshot(docRef, (snapshot) =>
@@ -50,18 +181,7 @@ const Task = () => {
     //     })
     // }, )
 
-    useEffect(() => {
-        const getTask = async () => {
-            getDoc(docRef)
-                .then((doc) => {
-                    setTaskList(doc.data())
-                })
 
-
-            //  setTasksList(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-        }
-        getTask()
-    }, [])
 
 // console.log(taskList.type)
 
@@ -104,33 +224,54 @@ const Task = () => {
 
 
 
-
-
-
-
     return (
-        <div className="m-auto mt-5 pt-5">
-            <div className="container-fluid bg-light align-content-center" id="main-container">
+        <div className="m-auto mx-2 mx-lg-5">
+            <div className="task__wrapper container-fluid shadow-lg  bg-light align-content-center py-5"
+                 id="main-container">
+
                 <div className="row">
                     <div className="col-lg-6">
-                        <h1 className="text-center">{ taskList.title }</h1>
-                        <InitTask />
+                        <h2 className="text-center mb-4">{taskList.title}</h2>
+                        <div className="d-flex flex-column align-items-center">
+                            <div className="ggb shadow">
+                                <Geogebra
+                                    id="appId"
+                                    language="russian"
+                                    appName="3d"
+                                    width="600"
+                                    height="400"
+                                    enableUndoRedo="false"
+                                    useBrowserForJS="true"
+                                />
+                            </div>
+                            <div className="mt-3 btn-group d-flex justify-content-center w-50 under-buttons">
+                                <Button className="btn-dark" onClick={prevScene}>Предыдущий рисунок</Button>
+                                <div className="bg-dark text-primary d-flex align-items-center"
+                                     id="current-scene">Рисунок 1
+                                </div>
+                                <Button className="btn-dark" onClick={nextScene} id="nextSceneButton">Следующий
+                                    рисунок</Button>
+                            </div>
+                            <div className="d-flex justify-content-center under-buttons">
+                                <Button className="btn-dark mt-2" id="edit-mode" onClick={ChangeMode}>Режим
+                                    презентации</Button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-lg-6" id="task-text">
+                    <div className="col-lg-6 mt-4 mt-lg-0" id="task-text">
                         <div className="w-100 text-justify">
 
 
                             <h2>Описание задачи</h2>
-                            <p>
+                            <p className="text-wrap">
                                 { taskList.description }
                             </p>
                             <hr/>
-                                <h2 className="text-center">Решение</h2>
-                                <p>
-                                    { taskList.solution }
-                                </p>
+                            <h2 className="text-center">Решение</h2>
+                            <p className="text-wrap">
+                                { taskList.solution }
+                            </p>
                         </div>
-                        <a href="/GebraExample">Gebra</a>
                     </div>
                 </div>
             </div>

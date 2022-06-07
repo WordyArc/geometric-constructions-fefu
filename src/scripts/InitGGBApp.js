@@ -152,7 +152,6 @@ Geogebra.defaultProps = {
     showAlgebraInput: true,
     showMenuBar: true,
     reloadOnPropChange: false,
-    borderColor: "#000",
     language: "russian"
 
 };
