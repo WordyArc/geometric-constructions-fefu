@@ -1,6 +1,9 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Geogebra from "./InitGGBApp";
 import {Context} from "../index";
+import {collection, doc, getDoc} from "firebase/firestore";
+import {db} from "../firebase-config";
+
 
 
 const InitTask = () => {
@@ -301,8 +304,10 @@ const InitTask = () => {
         console.log(app.getXML());
     }
     function loadGgbFile(){
+        // let stringBase64 = taskList.base64
+        // let toStringBase64 =  `"${taskList.base64}"`
         const app = window.appId;
-        app.setBase64(document.getElementById("Base64").value);
+        app.setBase64(taskList.base64);
     }
 
     function getObjname() {
@@ -387,12 +392,48 @@ const InitTask = () => {
         // var xmlString = serializer.serializeToString(svgOutput);
         // console.log(xmlString);
 
-
+        const obj = Object.fromEntries(scenes);
+        console.log(obj)
+        const map2 = new Map(Object.entries(obj));
+        console.log(map2)
 
         // console.log(scenes);
         // console.log(key);
     }
 
+    let id = 'zR1eUsCcnv13PvpICK9l'
+    const docRef = doc(db, 'tasks', id)
+
+    const [taskList, setTaskList] = useState([])
+    useEffect(() => {
+        const getTask = async () => {
+            getDoc(docRef)
+                .then((doc) => {
+                    setTaskList(doc.data())
+                })
+
+            //  setTasksList(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        }
+        getTask()
+    }, [])
+
+
+    setTimeout(loadGgbFile, 100)
+
+    function reviver(key, value) {
+        if(typeof value === 'object' && value !== null) {
+            if (value.dataType === 'Map') {
+                return new Map(value.value);
+            }
+        }
+        return value;
+    }
+
+    function setStrScenes() {
+        let strScenes = taskList.scenes
+        const newStrScene = JSON.parse(strScenes, reviver);
+        scenes = newStrScene
+    }
 
 
 
@@ -408,6 +449,7 @@ const InitTask = () => {
                 height="400"
                 enableUndoRedo="false"
                 useBrowserForJS="true"
+
 
             />
             <div className="btn-group d-flex justify-content-center w-50 under-buttons">
@@ -426,6 +468,7 @@ const InitTask = () => {
                 <button onClick={setHidden}>скрыть</button>
                 <button onClick={setScene}>сохранить сцену</button>
                 <button onClick={shitScene}>показать сцены</button>
+                <button onClick={setStrScenes}>грузануть сцены</button>
 
             </div>
             <ul>
