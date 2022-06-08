@@ -6,11 +6,13 @@ import Geogebra from "../../../scripts/InitGGBApp";
 import {collection, doc, getDoc} from "firebase/firestore";
 import {db} from "../../../firebase-config";
 import {Button} from "react-bootstrap";
+import {useParams} from "react-router-dom";
 
 
 const Task = () => {
+    const {id} = useParams();
 
-    let id = 'x2I5RJIhpvvTLMn0SDDI'
+    // let id = 'x2I5RJIhpvvTLMn0SDDI'
     const colRef = collection(db, 'tasks')
     const docRef = doc(db, 'tasks', id)
     const [taskList, setTaskList] = useState([])
