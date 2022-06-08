@@ -1,0 +1,22 @@
+.create-task__title-input {
+    width: 30rem;
+    border: 0;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+.create-task__description-input {
+    width: 35rem;
+    height: 15vh;
+    border: 0;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+
+}
+
+.create-task__solution-input {
+    width: 35rem;
+    height: 15vh;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+
+}
