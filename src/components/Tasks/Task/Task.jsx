@@ -28,14 +28,17 @@ const Task = () => {
         const setData = async () => {
             const app = await window.appId
             await app.setBase64(taskList.base64);
+
             let strScenes = await taskList.scenes
             scenes = JSON.parse(strScenes, reviver)
             setTimeout(setPresentMode, 10);
+
+            let timestamp = await taskList.createdAt
+            document.getElementById('current_date_time_block').innerHTML = timestamp.toDate();
             // await setPresentMode();
         }
         setTimeout(setData, 50)
     },);
-
 
     function setPresentMode() {
         const app = window.appId;
@@ -222,8 +225,6 @@ const Task = () => {
     }, []);*/
 
 
-
-
     return (
         <div className="m-auto mx-2 mx-lg-5">
             <div className="task__wrapper container-fluid shadow-lg  bg-light align-content-center py-5"
@@ -258,10 +259,8 @@ const Task = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-6 mt-4 mt-lg-0" id="task-text">
+                    <div className="d-flex flex-column justify-content-between align-items-center col-lg-6 mt-4 mt-lg-0" id="task-text">
                         <div className="w-100 text-justify">
-
-
                             <h2>Описание задачи</h2>
                             <p className="text-wrap">
                                 { taskList.description }
@@ -271,6 +270,11 @@ const Task = () => {
                             <p className="text-wrap">
                                 { taskList.solution }
                             </p>
+
+                        </div>
+                        <div className="d-flex flex-row">
+                            <small className="text-body mx-3 fw-bold">Задача создана:</small>
+                            <small id="current_date_time_block"></small>
                         </div>
                     </div>
                 </div>
