@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Col, Button} from "react-bootstrap";
 import './TaskCard.css'
+import {TASK_ROUTE} from "../../../utils/consts";
 
 
 const TaskCard = (props) => {
@@ -27,7 +28,7 @@ const TaskCard = (props) => {
                     <Card.Subtitle> {props.type} </Card.Subtitle>
                     <div className="d-flex justify-content-between align-items-center mt-3">
                         <div className="btn-group">
-                            <Button href="/Task" variant="outline-secondary"
+                            <Button href={props.link} variant="outline-secondary"
                                     className="btn-sm">Посмотреть</Button>
                             <Button disabled variant="outline-secondary"
                                     className="btn-sm">Редактировать</Button>

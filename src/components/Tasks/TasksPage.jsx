@@ -5,7 +5,7 @@ import TaskCard from "./TaskCard/TaskCard";
 import {useEffect, useState} from "react";
 import {collection, getDocs, onSnapshot, Timestamp} from "firebase/firestore";
 import {db} from "../../firebase-config";
-
+import Task from "./Task/Task";
 
 const TasksPage = () => {
     const tasksCollectionRef = collection(db, 'tasks')
@@ -62,6 +62,7 @@ const TasksPage = () => {
                                         title={ task.title }
                                         description={ task.description }
                                         type={ task.type }
+                                        link={`/Task/${task.id}`}
                                     />
                                     )
                                 })
