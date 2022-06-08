@@ -10,7 +10,7 @@ import {Button} from "react-bootstrap";
 
 const Task = () => {
 
-    let id = 'zR1eUsCcnv13PvpICK9l'
+    let id = 'x2I5RJIhpvvTLMn0SDDI'
     const colRef = collection(db, 'tasks')
     const docRef = doc(db, 'tasks', id)
     const [taskList, setTaskList] = useState([])
@@ -28,6 +28,8 @@ const Task = () => {
         const setData = async () => {
             const app = await window.appId
             await app.setBase64(taskList.base64);
+            // function loadGgbFile(){ app.setBase64("taskList.base64"); }
+            // setTimeout(loadGgbFile, 300)
 
             let strScenes = await taskList.scenes
             scenes = JSON.parse(strScenes, reviver)
@@ -40,16 +42,21 @@ const Task = () => {
         setTimeout(setData, 50)
     },);
 
+
     function setPresentMode() {
         const app = window.appId;
-        app.setPerspective("T");
+        app.setPerspective("G");
         app.enableRightClick(false);
-        app.setAxesVisible(3, false, false, false);
+        app.setAxesVisible(false);
+        app.setGridVisible(false)
     }
     function setChangeMode() {
         const app = window.appId;
-        app.setPerspective("5");
+        app.setPerspective("AGS");
+        app.setPerspective("+Tools")
         app.enableRightClick(true);
+        app.setAxesVisible(true, true);
+        app.setGridVisible(true)
     }
 
     function ChangeMode() {
@@ -238,11 +245,12 @@ const Task = () => {
                                 <Geogebra
                                     id="appId"
                                     language="russian"
-                                    appName="3d"
+                                    appName="geometry"
                                     width="600"
                                     height="400"
                                     enableUndoRedo="false"
                                     useBrowserForJS="true"
+                                    customToolBar="0 1 2 3 6 10 15 34"
                                 />
                             </div>
                             <div className="mt-3 btn-group d-flex justify-content-center w-50 under-buttons">

@@ -12,13 +12,17 @@ const CreateTask = () => {
         const app = window.appId;
         if (document.getElementById('edit-mode').innerText === "Режим презентации") {
             document.getElementById("edit-mode").innerText = "Режим редактирования";
-            app.setPerspective("5");
-            app.enableRightClick(true);
+            app.setPerspective("G");
+            app.enableRightClick(false);
+            app.setAxesVisible(false);
+            app.setGridVisible(false)
         } else {
             document.getElementById("edit-mode").innerText = "Режим презентации";
-            app.setPerspective("T");
-            app.enableRightClick(false);
-            app.setAxesVisible(3, false, false, false);
+            app.setPerspective("AGS");
+            app.setPerspective("+Tools")
+            app.enableRightClick(true);
+            app.setAxesVisible(true, true);
+            app.setGridVisible(true)
         }
     }
 
@@ -86,23 +90,26 @@ const CreateTask = () => {
     const [newType, setNewType] = useState("")
     const newCreatedAT = serverTimestamp();
 
-    useEffect(() => {
+    /*useEffect(() => {
         const createTask = async () => {
             const app = await window.appId;
-            await setNewBase64(app.getBase64);
+            let base64 = await app.getBase64();
+            await setNewBase64(base64);
         }
         createTask()
-    })
+    })*/
 
     const setTask = async () => {
         const strScene = JSON.stringify(scenes, replacer);
+        const app = await window.appId;
+        const strBase64 = await app.getBase64();
         setNewScenes(strScene);
         if (strScene !== "") {
             await addDoc(tasksCollectionRef, {
                 title: newTitle,
                 description: newDescription,
                 solution: newSolution,
-                base64: newBase64,
+                base64: strBase64,
                 scenes: strScene,
                 type: newType,
                 createdAt: newCreatedAT
@@ -204,15 +211,19 @@ const CreateTask = () => {
         return () => unsubscribed  = true;
     }, []);*/
 
+    function saveGgbFile(){
 
+    }
 
-
+    function test() {
+        const app = window.appId;
+        let str = app.getBase64
+        console.log(saveGgbFile())
+    }
 
 
 
     return (
-
-
         <div className="m-auto mx-lg-5">
             <div className="task__wrapper container-fluid shadow-lg  bg-light align-content-center py-4" id="main-container">
                 <div className="row d-flex align-items-center">
@@ -220,14 +231,14 @@ const CreateTask = () => {
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center shadow">
                                 <Geogebra
-                                    debug
                                     id="appId"
-                                    language="english"
-                                    appName="3d"
+                                    language="russian"
+                                    appName="geometry"
                                     width="600"
                                     height="400"
                                     enableUndoRedo="false"
                                     useBrowserForJS="true"
+                                    customToolBar="0 1 2 3 6 10 15 34"
                                 />
                             </div>
                             <div className="mt-3 d-flex justify-content-center w-50">
@@ -239,6 +250,7 @@ const CreateTask = () => {
                                     <Button className="btn-dark" onClick={nextScene} id="nextSceneButton">Следующий рисунок</Button>
                                 </div>
                                 <Button className="mx-2 btn-dark" onClick={setScene}>Сохранить сцену</Button>
+                                <Button className="mx-2 btn-dark" onClick={test}>Test</Button>
                             </div>
                             <div className="d-flex justify-content-center under-buttons">
                                 <Button className="btn-dark mt-2" id="edit-mode" onClick={ChangeMode}>Режим презентации</Button>
