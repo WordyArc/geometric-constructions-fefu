@@ -37,7 +37,7 @@ const Task = () => {
             // function loadGgbFile(){ app.setBase64("taskList.base64"); }
             // setTimeout(loadGgbFile, 300)
 
-            setTimeout(setPresentMode, 10);
+            setTimeout(setPresentMode, 50);
 
             let timestamp = await taskList.createdAt
             document.getElementById('current_date_time_block').innerHTML = timestamp.toDate();

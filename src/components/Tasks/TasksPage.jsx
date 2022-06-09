@@ -42,6 +42,17 @@ const TasksPage = () => {
     }
 
 
+    const [newDate, setNewDate] = useState(Date)
+    useEffect(() => {
+        const getDate = async () => {
+            tasksList.map(async (task) => {
+                let date = await task.createdAt.toDate()
+                setNewDate(date)
+            })
+        }
+        setTimeout(getDate, 100)
+    })
+
     return (
         <div>
             <div className="tasks__wrapper bg-img bg-light shadow">
@@ -69,7 +80,7 @@ const TasksPage = () => {
                                         description={ task.description }
                                         type={ task.type }
                                         link={`/Task/${task.id}`}
-                                        date={ formatDate(task.createdAt.toDate()) }
+                                        date={ formatDate(newDate) }
                                     />
                                     )
                                 })

@@ -15,15 +15,16 @@ const TaskCard = (props) => {
 
     return (
             <Card className="task-card shadow-sm col-12 col-sm-7 col-md-5 col-lg-3 mx-3 my-5">
-                <svg className="bd-placeholder-img card-img-top" width="100%" height="225"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
+                {/*<svg className="bd-placeholder-img card-img-top" width="100%" height="225"*/}
+                {/*     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"*/}
+                {/*     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>*/}
+                {/*    <rect width="100%" height="100%" fill="#55595c"></rect>*/}
+                {/*    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>*/}
+                {/*</svg>*/}
 
                 <Card.Body className="d-flex flex-column justify-content-between">
                     <Card.Title> {props.title} </Card.Title>
+                    <hr/>
                     <Card.Text> {props.description} </Card.Text>
                     <Card.Subtitle> {props.type} </Card.Subtitle>
                     <div className="d-flex justify-content-between align-items-center mt-3">
@@ -31,7 +32,7 @@ const TaskCard = (props) => {
                             <Button href={props.link} variant="outline-secondary" className="btn-sm">Посмотреть</Button>
                             {/*<Button disabled variant="outline-secondary" className="btn-sm">Редактировать</Button>*/}
                         </div>
-                        <small className="text-muted">{props.date}</small>
+                        <small className="text-muted">{ props.date }</small>
                     </div>
                 </Card.Body>
             </Card>
