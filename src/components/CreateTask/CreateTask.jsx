@@ -99,17 +99,17 @@ const CreateTask = () => {
     })*/
 
     const setTask = async () => {
-        const strScene = '';
+        // const strScene = '';
         const app = await window.appId;
         const strBase64 = await app.getBase64();
-        setNewScenes(strScene);
-        if (strScene !== "") {
+        // setNewScenes(strScene);
+        if (strBase64 !== "") {
             await addDoc(tasksCollectionRef, {
                 title: newTitle,
                 description: newDescription,
                 solution: newSolution,
                 base64: strBase64,
-                scenes: strScene,
+                // scenes: strScene,
                 type: newType,
                 createdAt: newCreatedAT
             });
