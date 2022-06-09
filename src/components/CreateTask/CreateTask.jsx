@@ -26,7 +26,8 @@ const CreateTask = () => {
         }
     }
 
-    let layerInt = 0
+    // let layerInt = 0
+    let [layerInt, setLayerInt] = useState(0)
 
     function layerCounter() {
         document.getElementById("current-scene").innerText = "Рисунок " + layerInt;
@@ -133,16 +134,16 @@ const CreateTask = () => {
     return (
         <div className="m-auto mx-lg-5">
             <div className="task__wrapper container-fluid shadow-lg  bg-light align-content-center py-4" id="main-container">
-                <div className="row d-flex align-items-center">
-                    <div className="col-lg-6">
+                <div className="row d-flex align-items-center justify-content-center">
+                    <div className="create-task__ggb col-lg-6">
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center shadow">
                                 <Geogebra
                                     id="appId"
                                     language="russian"
                                     appName="geometry"
-                                    width="600"
-                                    height="400"
+                                    width="700"
+                                    height="500"
                                     enableUndoRedo="true"
                                     useBrowserForJS="true"
                                     customToolBar="0 1 2 3 6 10 15 34"
