@@ -41,8 +41,8 @@ const Navibar = () => {
                             <NavLink className="navibar__link" to={CREATETASK_ROUTE}>Создать задачу</NavLink>
                         </Nav>
                         <Nav>
-                            <Button disabled className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>
-                            <Button disabled variant="primary">Зарегистрироваться</Button>
+                            {/*<Button disabled className="SignIn mb-2 mb-lg-0 mx-lg-2" variant="primary">Войти</Button>
+                            <Button disabled variant="primary">Зарегистрироваться</Button>*/}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
