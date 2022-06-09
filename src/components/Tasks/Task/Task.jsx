@@ -9,6 +9,10 @@ import {Button} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 
 
+// layersInt = app.getLayer(getObjNum())
+
+
+
 const Task = () => {
     const {id} = useParams();
 
@@ -33,8 +37,6 @@ const Task = () => {
             // function loadGgbFile(){ app.setBase64("taskList.base64"); }
             // setTimeout(loadGgbFile, 300)
 
-            let strScenes = await taskList.scenes
-            scenes = JSON.parse(strScenes, reviver)
             setTimeout(setPresentMode, 10);
 
             let timestamp = await taskList.createdAt
@@ -72,59 +74,46 @@ const Task = () => {
         }
     }
 
-    let scenes = new Map();
-    let sceneNumber = 1;
+    let layerInt = 0
 
-    function addScene(number, names) {
-        scenes.set(number, names);
-    }
-
-    function hideScene(number) {
-        const app = window.appId;
-        let namesArray = scenes.get(number);
-        for (let i = 0; i < namesArray.length; ++i) {
-            app.setVisible(namesArray[i], false);
+    useEffect(() => {
+        const layerCounterCurrent = async () => {
+            const app = window.appId;
+            let strName, numLayers
+            strName = app.getObjectName()
+            numLayers = app.getLayer(strName)
+            layerInt = numLayers
         }
-    }
+        setTimeout(layerCounterCurrent, 100)
+        console.log(layerInt)
 
-    function showScene(number) {
-        const app = window.appId;
-        let namesArray = scenes.get(number);
-        for (let i = 0; i < namesArray.length; ++i) {
-            app.setVisible(namesArray[i], true);
-        }
+    })
+
+    function layerCounter() {
+        document.getElementById("current-scene").innerText = "Рисунок " + layerInt;
     }
 
     function prevScene() {
         const app = window.appId;
-        let prevSceneNumber = sceneNumber - 1;
-        if (prevSceneNumber > 0) {
-            hideScene(sceneNumber);
-            --sceneNumber;
-            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        if (layerInt > 0) {
+            app.setLayerVisible(layerInt, false);
+            --layerInt;
+            layerCounter()
         }
-        else return;
     }
 
     function nextScene() {
         const app = window.appId;
-        let nextScene = sceneNumber + 1;
-        if (nextScene < scenes.size + 1) {
-            showScene(nextScene);
-            ++sceneNumber;
-            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        let strName, numLayers
+        strName = app.getObjectName()
+        numLayers = app.getLayer(strName)
+        if (layerInt < numLayers + 1) {
+            app.setLayerVisible(layerInt, true);
+            ++layerInt;
+            layerCounter()
         }
-        else return;
     }
 
-    function reviver(key, value) {
-        if(typeof value === 'object' && value !== null) {
-            if (value.dataType === 'Map') {
-                return new Map(value.value);
-            }
-        }
-        return value;
-    }
 
     /*function loadGgbFile(){
         const app = window.appId;
