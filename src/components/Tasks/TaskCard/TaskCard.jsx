@@ -22,18 +22,16 @@ const TaskCard = (props) => {
                     <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                 </svg>
 
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-between">
                     <Card.Title> {props.title} </Card.Title>
                     <Card.Text> {props.description} </Card.Text>
                     <Card.Subtitle> {props.type} </Card.Subtitle>
                     <div className="d-flex justify-content-between align-items-center mt-3">
                         <div className="btn-group">
-                            <Button href={props.link} variant="outline-secondary"
-                                    className="btn-sm">Посмотреть</Button>
-                            <Button disabled variant="outline-secondary"
-                                    className="btn-sm">Редактировать</Button>
+                            <Button href={props.link} variant="outline-secondary" className="btn-sm">Посмотреть</Button>
+                            {/*<Button disabled variant="outline-secondary" className="btn-sm">Редактировать</Button>*/}
                         </div>
-                        <small className="text-muted">9 mins</small>
+                        <small className="text-muted">{props.date}</small>
                     </div>
                 </Card.Body>
             </Card>
