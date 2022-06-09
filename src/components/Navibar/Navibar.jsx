@@ -19,7 +19,7 @@ const Navibar = () => {
                     <Navbar.Brand className="navibar__brand" href="/"><img
                         alt=""
                         // src={require('../../assets/logo-light.png')}
-                        src="/logo-light.png"
+                        src={require("./assets/logo-light.png")}
                         width={"30"}
                         height={"30"}
                         className="logo d-inline-block align-top"
