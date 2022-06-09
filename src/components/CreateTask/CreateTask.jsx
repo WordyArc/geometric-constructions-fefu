@@ -26,50 +26,49 @@ const CreateTask = () => {
         }
     }
 
-    const scenes = new Map();
-    let sceneNumber = 1;
+    let layerInt = 0
 
-    function addScene(number, names) {
-        scenes.set(number, names);
-    }
-
-    function hideScene(number) {
-        const app = window.appId;
-        let namesArray = scenes.get(number);
-        for (let i = 0; i < namesArray.length; ++i) {
-            app.setVisible(namesArray[i], false);
-        }
-    }
-
-    function showScene(number) {
-        const app = window.appId;
-        let namesArray = scenes.get(number);
-        for (let i = 0; i < namesArray.length; ++i) {
-            app.setVisible(namesArray[i], true);
-        }
+    function layerCounter() {
+        document.getElementById("current-scene").innerText = "Рисунок " + layerInt;
     }
 
     function prevScene() {
         const app = window.appId;
-        let prevSceneNumber = sceneNumber - 1;
-        if (prevSceneNumber > 0) {
-            hideScene(sceneNumber);
-            --sceneNumber;
-            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        if (layerInt > 0) {
+            app.setLayerVisible(layerInt, false);
+            --layerInt;
+            layerCounter()
         }
-        else return;
     }
 
     function nextScene() {
         const app = window.appId;
-        let nextScene = sceneNumber + 1;
-        if (nextScene < scenes.size + 1) {
-            showScene(nextScene);
-            ++sceneNumber;
-            document.getElementById("current-scene").innerText = "Рисунок " + sceneNumber;
+        let strName, numLayers
+        strName = app.getObjectName()
+        numLayers = app.getLayer(strName)
+        if (layerInt < numLayers + 1) {
+            app.setLayerVisible(layerInt, true);
+            ++layerInt;
+            layerCounter()
         }
-        else return;
     }
+
+    let startScene = 0;
+    function setLayer() {
+        const app = window.appId;
+        let strName
+        let layer
+        let objNumber = app.getObjectNumber();
+        for (let i = startScene; i < objNumber; i++) {
+            strName = app.getObjectName(i);
+            layer = app.setLayer(strName, layerInt)
+            startScene = objNumber;
+        }
+        layerInt++
+        layerCounter()
+        console.log(layerInt)
+    }
+
 
     const [tasks, setTasks] = useState([]);
     const tasksCollectionRef = collection(db, 'tasks')
@@ -100,7 +99,7 @@ const CreateTask = () => {
     })*/
 
     const setTask = async () => {
-        const strScene = JSON.stringify(scenes, replacer);
+        const strScene = '';
         const app = await window.appId;
         const strBase64 = await app.getBase64();
         setNewScenes(strScene);
@@ -121,104 +120,15 @@ const CreateTask = () => {
     }
 
 
-    let arr = [];
-    let startScene = 0;
-    let key = 1;
-    function setScene() {
+
+    /*function saveGgbFile(){
         const app = window.appId;
-        let i, strName;
-        let objNumber = app.getObjectNumber();
-        for (i = startScene; i < objNumber; i++) {
-            strName = app.getObjectName(i);
-            arr[i] = strName;
-            startScene = objNumber;
-            // console.log(objNumber);
-            if (i === objNumber-1) {
-                scenes.set(key, arr);
-                key++;
-            }
-        }
-        console.log(arr);
-        arr = [];
+        app.getBase64(function(b){document.getElementById("Base64").value = b});
     }
-
-
-    function replacer(key, value) {
-        if(value instanceof Map) {
-            return {
-                dataType: 'Map',
-                value: Array.from(value.entries()), // or with spread: value: [...value]
-            };
-        } else {
-            return value;
-        }
-    }
-
-
-
-
-
-    /*function createTask () {
+    function loadGgbFile(){
         const app = window.appId;
-        if (newBase64 === "") {
-            let e = setNewBase64(app.getBase64)
-            setTimeout(e, 1000)
-        }
-        const strScene = JSON.stringify(scenes, replacer);
-        setNewScenes(strScene);
-        const setTask = async () => {
-            await addDoc(tasksCollectionRef, {
-                title: newTitle,
-                description: newDescription,
-                solution: newSolution,
-                base64: newBase64,
-                scenes: newScenes,
-                type: newType,
-                createdAt: newCreatedAT
-            });
-        }
-        setTask()
+        app.setBase64(document.getElementById("Base64").value);
     }*/
-
-
-
-
-
-
-
-
-   /* const [userDataArray, setUserDataArray] = useState([]);
-
-    useEffect(() => {
-        let unsubscribed = false;
-
-        getDocs(collection(db, "tasks"))
-            .then((querySnapshot) => {
-                if (unsubscribed) return; // unsubscribed? do nothing.
-
-                const newUserDataArray = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-
-                setUserDataArray(newUserDataArray);
-            })
-            .catch((err) => {
-                if (unsubscribed) return; // unsubscribed? do nothing.
-
-                //
-                console.error("Failed to retrieve data", err);
-            });
-
-        return () => unsubscribed  = true;
-    }, []);*/
-
-
-    /*function test() {
-        const app = window.appId;
-        let str = app.getBase64
-        console.log(saveGgbFile())
-    }*/
-
-
 
     return (
         <div className="m-auto mx-lg-5">
@@ -241,13 +151,10 @@ const CreateTask = () => {
                             <div className="mt-3 d-flex justify-content-center w-50">
                                 <div className="btn-group">
                                     <Button className="btn-dark" onClick={prevScene}>Предыдущий рисунок</Button>
-                                    <div className="bg-dark text-primary d-flex align-items-center"
-                                         id="current-scene">Рисунок 1
-                                    </div>
+                                    <div className="bg-dark text-primary d-flex align-items-center" id="current-scene">Рисунок</div>
                                     <Button className="btn-dark" onClick={nextScene} id="nextSceneButton">Следующий рисунок</Button>
                                 </div>
-                                <Button className="mx-2 btn-dark" onClick={setScene}>Сохранить сцену</Button>
-                                {/*<Button className="mx-2 btn-dark" onClick={test}>Test</Button>*/}
+                                <Button className="mx-2 btn-dark" onClick={setLayer}>Сохранить сцену</Button>
                             </div>
                             <div className="d-flex justify-content-center under-buttons">
                                 <Button className="btn-dark mt-2" id="edit-mode" onClick={ChangeMode}>Режим презентации</Button>
@@ -255,6 +162,15 @@ const CreateTask = () => {
                         </div>
                     </div>
                     <div className="d-flex flex-column justify-content-between align-items-center col-lg-6 mt-4 mt-lg-0" id="task-text">
+
+
+                        {/*<ul>
+                            <li/><button onClick={saveGgbFile} >Save</button>
+                            <li/><button onClick={loadGgbFile}>Load</button>
+                        </ul>
+                        <textarea name="Base64" id="Base64" cols="66" rows="8"></textarea>*/}
+
+
                         <div>
                             <h4>Название задачи</h4>
                             <input className="create-task__title-input" placeholder="Введите название задачи..." type="text" onChange={(event) => {setNewTitle(event.target.value)}}/>
