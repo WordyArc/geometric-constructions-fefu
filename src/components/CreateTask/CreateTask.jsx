@@ -26,7 +26,7 @@ const CreateTask = () => {
         }
     }
 
-    let scenes = new Map();
+    const scenes = new Map();
     let sceneNumber = 1;
 
     function addScene(number, names) {
@@ -211,15 +211,12 @@ const CreateTask = () => {
         return () => unsubscribed  = true;
     }, []);*/
 
-    function saveGgbFile(){
 
-    }
-
-    function test() {
+    /*function test() {
         const app = window.appId;
         let str = app.getBase64
         console.log(saveGgbFile())
-    }
+    }*/
 
 
 
@@ -236,7 +233,7 @@ const CreateTask = () => {
                                     appName="geometry"
                                     width="600"
                                     height="400"
-                                    enableUndoRedo="false"
+                                    enableUndoRedo="true"
                                     useBrowserForJS="true"
                                     customToolBar="0 1 2 3 6 10 15 34"
                                 />
@@ -250,7 +247,7 @@ const CreateTask = () => {
                                     <Button className="btn-dark" onClick={nextScene} id="nextSceneButton">Следующий рисунок</Button>
                                 </div>
                                 <Button className="mx-2 btn-dark" onClick={setScene}>Сохранить сцену</Button>
-                                <Button className="mx-2 btn-dark" onClick={test}>Test</Button>
+                                {/*<Button className="mx-2 btn-dark" onClick={test}>Test</Button>*/}
                             </div>
                             <div className="d-flex justify-content-center under-buttons">
                                 <Button className="btn-dark mt-2" id="edit-mode" onClick={ChangeMode}>Режим презентации</Button>
