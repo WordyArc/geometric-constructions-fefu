@@ -79,7 +79,7 @@ const TasksPage = () => {
                                         title={ task.title }
                                         description={ task.description }
                                         type={ task.type }
-                                        link={`/Task/${task.id}`}
+                                        link={`#/Task/${task.id}`}
                                         date={ formatDate(newDate) }
                                     />
                                     )

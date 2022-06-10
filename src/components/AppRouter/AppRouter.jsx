@@ -21,7 +21,7 @@ const AppRouter = () => {
                 {publicRoutes.map(({path, Component}) =>
                     <Route path={path} element={Component} exact={true}/>
                 )}
-                <Route path={"*"} element={<Navigate to="/" replace />}/>
+                {/*<Route path={"*"} element={<Navigate to="/" replace />}/>*/}
 
             </Routes>
         )
