@@ -2,7 +2,7 @@
   "name": "geometric-constructions",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wordyarc.github.io/geometric-constructions/",
+  "homepage": "https://wordyarc.github.io/",
   "dependencies": {
     "@firebase/firestore": "^3.4.9",
     "@testing-library/jest-dom": "^5.16.4",
